@@ -1,0 +1,757 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NetPontoDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="NetPontoDBModelStoreContainer">
+          <EntitySet Name="aspnet_Roles" EntityType="NetPontoDBModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Users" EntityType="NetPontoDBModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="NetPontoDBModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_Article" EntityType="NetPontoDBModel.Store.NetPonto_Article" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_ArticleTags" EntityType="NetPontoDBModel.Store.NetPonto_ArticleTags" store:Type="Tables" store:Schema="dbo" store:Name="NetPonto_ArticleTags">
+            <DefiningQuery>SELECT 
+      [NetPonto_ArticleTags].[TagId] AS [TagId], 
+      [NetPonto_ArticleTags].[ArticleId] AS [ArticleId]
+      FROM [dbo].[NetPonto_ArticleTags] AS [NetPonto_ArticleTags]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NetPonto_Comments" EntityType="NetPontoDBModel.Store.NetPonto_Comments" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_EvemtSurveys" EntityType="NetPontoDBModel.Store.NetPonto_EvemtSurveys" store:Type="Tables" store:Schema="dbo" store:Name="NetPonto_EvemtSurveys">
+            <DefiningQuery>SELECT 
+      [NetPonto_EvemtSurveys].[EventId] AS [EventId], 
+      [NetPonto_EvemtSurveys].[UserId] AS [UserId], 
+      [NetPonto_EvemtSurveys].[SurveyId] AS [SurveyId]
+      FROM [dbo].[NetPonto_EvemtSurveys] AS [NetPonto_EvemtSurveys]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NetPonto_Events" EntityType="NetPontoDBModel.Store.NetPonto_Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_EventsUser" EntityType="NetPontoDBModel.Store.NetPonto_EventsUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_Log" EntityType="NetPontoDBModel.Store.NetPonto_Log" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_Surveys" EntityType="NetPontoDBModel.Store.NetPonto_Surveys" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_TagCloud" EntityType="NetPontoDBModel.Store.NetPonto_TagCloud" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_Users" EntityType="NetPontoDBModel.Store.NetPonto_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NetPonto_UserTags" EntityType="NetPontoDBModel.Store.NetPonto_UserTags" store:Type="Tables" store:Schema="dbo" store:Name="NetPonto_UserTags">
+            <DefiningQuery>SELECT 
+      [NetPonto_UserTags].[TagId] AS [TagId], 
+      [NetPonto_UserTags].[UserId] AS [UserId]
+      FROM [dbo].[NetPonto_UserTags] AS [NetPonto_UserTags]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__aspnet_Us__RoleI__4AB81AF0" Association="NetPontoDBModel.Store.FK__aspnet_Us__RoleI__4AB81AF0">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__49C3F6B7" Association="NetPontoDBModel.Store.FK__aspnet_Us__UserI__49C3F6B7">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_ArticleTags_NetPonto_Article" Association="NetPontoDBModel.Store.FK_NetPonto_ArticleTags_NetPonto_Article">
+            <End Role="NetPonto_Article" EntitySet="NetPonto_Article" />
+            <End Role="NetPonto_ArticleTags" EntitySet="NetPonto_ArticleTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_ArticleTags_NetPonto_TagCloud" Association="NetPontoDBModel.Store.FK_NetPonto_ArticleTags_NetPonto_TagCloud">
+            <End Role="NetPonto_TagCloud" EntitySet="NetPonto_TagCloud" />
+            <End Role="NetPonto_ArticleTags" EntitySet="NetPonto_ArticleTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_EvemtSurveys_NetPonto_EventsUser" Association="NetPontoDBModel.Store.FK_NetPonto_EvemtSurveys_NetPonto_EventsUser">
+            <End Role="NetPonto_EventsUser" EntitySet="NetPonto_EventsUser" />
+            <End Role="NetPonto_EvemtSurveys" EntitySet="NetPonto_EvemtSurveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_EvemtSurveys_NetPonto_Surveys" Association="NetPontoDBModel.Store.FK_NetPonto_EvemtSurveys_NetPonto_Surveys">
+            <End Role="NetPonto_Surveys" EntitySet="NetPonto_Surveys" />
+            <End Role="NetPonto_EvemtSurveys" EntitySet="NetPonto_EvemtSurveys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_EventsUser_NetPonto_Events" Association="NetPontoDBModel.Store.FK_NetPonto_EventsUser_NetPonto_Events">
+            <End Role="NetPonto_Events" EntitySet="NetPonto_Events" />
+            <End Role="NetPonto_EventsUser" EntitySet="NetPonto_EventsUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_EventsUser_NetPonto_Users" Association="NetPontoDBModel.Store.FK_NetPonto_EventsUser_NetPonto_Users">
+            <End Role="NetPonto_Users" EntitySet="NetPonto_Users" />
+            <End Role="NetPonto_EventsUser" EntitySet="NetPonto_EventsUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_Users_aspnet_Users" Association="NetPontoDBModel.Store.FK_NetPonto_Users_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="NetPonto_Users" EntitySet="NetPonto_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_UserTags_NetPonto_TagCloud" Association="NetPontoDBModel.Store.FK_NetPonto_UserTags_NetPonto_TagCloud">
+            <End Role="NetPonto_TagCloud" EntitySet="NetPonto_TagCloud" />
+            <End Role="NetPonto_UserTags" EntitySet="NetPonto_UserTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_UserTags_NetPonto_Users" Association="NetPontoDBModel.Store.FK_NetPonto_UserTags_NetPonto_Users">
+            <End Role="NetPonto_Users" EntitySet="NetPonto_Users" />
+            <End Role="NetPonto_UserTags" EntitySet="NetPonto_UserTags" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredRoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Description" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetPonto_Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="nchar" Nullable="false" MaxLength="10" />
+          <Property Name="Title" Type="nchar" Nullable="false" MaxLength="10" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NetPontoDB.dbo.NetPonto_ArticleTags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="NetPonto_ArticleTags">
+          <Key>
+            <PropertyRef Name="TagId" />
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="ArticleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetPonto_Comments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="1024" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NetPontoDB.dbo.NetPonto_EvemtSurveys' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="NetPonto_EvemtSurveys">
+          <Key>
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="SurveyId" />
+          </Key>
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SurveyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetPonto_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="Lat" Type="decimal" Scale="18" />
+          <Property Name="Lon" Type="decimal" Scale="18" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="CreatedBy" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="UpdatedBy" Type="uniqueidentifier" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Seats" Type="int" />
+        </EntityType>
+        <EntityType Name="NetPonto_EventsUser">
+          <Key>
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Prize" Type="varchar" MaxLength="255" />
+          <Property Name="Speaker" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetPonto_Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ApplicationName" Type="varchar" MaxLength="255" />
+          <Property Name="LogLevel" Type="varchar" MaxLength="64" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="MachineName" Type="varchar" MaxLength="255" />
+          <Property Name="UserName" Type="varchar" MaxLength="64" />
+          <Property Name="Assembly" Type="varchar" MaxLength="255" />
+          <Property Name="WorkingDirectory" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Exception" Type="varchar" MaxLength="255" />
+          <Property Name="DetailedMessage" Type="varchar" MaxLength="1024" />
+        </EntityType>
+        <EntityType Name="NetPonto_Surveys">
+          <Key>
+            <PropertyRef Name="SurveyId" />
+          </Key>
+          <Property Name="SurveyId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetPonto_TagCloud">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="16" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="NetPonto_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="Deleted" Type="bit" Nullable="false" />
+          <Property Name="Avatar" Type="varchar" MaxLength="32" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'NetPontoDB.dbo.NetPonto_UserTags' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="NetPonto_UserTags">
+          <Key>
+            <PropertyRef Name="TagId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__aspnet_Us__RoleI__4AB81AF0">
+          <End Role="aspnet_Roles" Type="NetPontoDBModel.Store.aspnet_Roles" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="NetPontoDBModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__49C3F6B7">
+          <End Role="aspnet_Users" Type="NetPontoDBModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="NetPontoDBModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_ArticleTags_NetPonto_Article">
+          <End Role="NetPonto_Article" Type="NetPontoDBModel.Store.NetPonto_Article" Multiplicity="1" />
+          <End Role="NetPonto_ArticleTags" Type="NetPontoDBModel.Store.NetPonto_ArticleTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_Article">
+              <PropertyRef Name="ArticleId" />
+            </Principal>
+            <Dependent Role="NetPonto_ArticleTags">
+              <PropertyRef Name="ArticleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_ArticleTags_NetPonto_TagCloud">
+          <End Role="NetPonto_TagCloud" Type="NetPontoDBModel.Store.NetPonto_TagCloud" Multiplicity="1" />
+          <End Role="NetPonto_ArticleTags" Type="NetPontoDBModel.Store.NetPonto_ArticleTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_TagCloud">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="NetPonto_ArticleTags">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_EvemtSurveys_NetPonto_EventsUser">
+          <End Role="NetPonto_EventsUser" Type="NetPontoDBModel.Store.NetPonto_EventsUser" Multiplicity="1" />
+          <End Role="NetPonto_EvemtSurveys" Type="NetPontoDBModel.Store.NetPonto_EvemtSurveys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_EventsUser">
+              <PropertyRef Name="EventId" />
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NetPonto_EvemtSurveys">
+              <PropertyRef Name="EventId" />
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_EvemtSurveys_NetPonto_Surveys">
+          <End Role="NetPonto_Surveys" Type="NetPontoDBModel.Store.NetPonto_Surveys" Multiplicity="1" />
+          <End Role="NetPonto_EvemtSurveys" Type="NetPontoDBModel.Store.NetPonto_EvemtSurveys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_Surveys">
+              <PropertyRef Name="SurveyId" />
+            </Principal>
+            <Dependent Role="NetPonto_EvemtSurveys">
+              <PropertyRef Name="SurveyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_EventsUser_NetPonto_Events">
+          <End Role="NetPonto_Events" Type="NetPontoDBModel.Store.NetPonto_Events" Multiplicity="1" />
+          <End Role="NetPonto_EventsUser" Type="NetPontoDBModel.Store.NetPonto_EventsUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_Events">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="NetPonto_EventsUser">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_EventsUser_NetPonto_Users">
+          <End Role="NetPonto_Users" Type="NetPontoDBModel.Store.NetPonto_Users" Multiplicity="1" />
+          <End Role="NetPonto_EventsUser" Type="NetPontoDBModel.Store.NetPonto_EventsUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NetPonto_EventsUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_Users_aspnet_Users">
+          <End Role="aspnet_Users" Type="NetPontoDBModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="NetPonto_Users" Type="NetPontoDBModel.Store.NetPonto_Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NetPonto_Users">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_UserTags_NetPonto_TagCloud">
+          <End Role="NetPonto_TagCloud" Type="NetPontoDBModel.Store.NetPonto_TagCloud" Multiplicity="1" />
+          <End Role="NetPonto_UserTags" Type="NetPontoDBModel.Store.NetPonto_UserTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_TagCloud">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="NetPonto_UserTags">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_UserTags_NetPonto_Users">
+          <End Role="NetPonto_Users" Type="NetPontoDBModel.Store.NetPonto_Users" Multiplicity="1" />
+          <End Role="NetPonto_UserTags" Type="NetPontoDBModel.Store.NetPonto_UserTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NetPonto_UserTags">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+      warning 6013: The table/view 'NetPontoDB.dbo.NetPonto_Tags' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+      
+      <EntityType Name="NetPonto_Tags">
+        <Property Name="TagId" Type="nchar" MaxLength="10" />
+      </EntityType>-->
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NetPontoDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="NetPontoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="aspnet_Roles" EntityType="NetPontoDBModel.aspnet_Roles" />
+          <EntitySet Name="aspnet_Users" EntityType="NetPontoDBModel.aspnet_Users" />
+          <EntitySet Name="NetPonto_Article" EntityType="NetPontoDBModel.NetPonto_Article" />
+          <EntitySet Name="NetPonto_Comments" EntityType="NetPontoDBModel.NetPonto_Comments" />
+          <EntitySet Name="NetPonto_Events" EntityType="NetPontoDBModel.NetPonto_Events" />
+          <EntitySet Name="NetPonto_EventsUser" EntityType="NetPontoDBModel.NetPonto_EventsUser" />
+          <EntitySet Name="NetPonto_Log" EntityType="NetPontoDBModel.NetPonto_Log" />
+          <EntitySet Name="NetPonto_Surveys" EntityType="NetPontoDBModel.NetPonto_Surveys" />
+          <EntitySet Name="NetPonto_TagCloud" EntityType="NetPontoDBModel.NetPonto_TagCloud" />
+          <EntitySet Name="NetPonto_Users" EntityType="NetPontoDBModel.NetPonto_Users" />
+          <AssociationSet Name="FK_NetPonto_Users_aspnet_Users" Association="NetPontoDBModel.FK_NetPonto_Users_aspnet_Users">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="NetPonto_Users" EntitySet="NetPonto_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_EventsUser_NetPonto_Events" Association="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Events">
+            <End Role="NetPonto_Events" EntitySet="NetPonto_Events" />
+            <End Role="NetPonto_EventsUser" EntitySet="NetPonto_EventsUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NetPonto_EventsUser_NetPonto_Users" Association="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Users">
+            <End Role="NetPonto_Users" EntitySet="NetPonto_Users" />
+            <End Role="NetPonto_EventsUser" EntitySet="NetPonto_EventsUser" />
+          </AssociationSet>
+          <AssociationSet Name="aspnet_UsersInRoles" Association="NetPontoDBModel.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="NetPonto_ArticleTags" Association="NetPontoDBModel.NetPonto_ArticleTags">
+            <End Role="NetPonto_Article" EntitySet="NetPonto_Article" />
+            <End Role="NetPonto_TagCloud" EntitySet="NetPonto_TagCloud" />
+          </AssociationSet>
+          <AssociationSet Name="NetPonto_EvemtSurveys" Association="NetPontoDBModel.NetPonto_EvemtSurveys">
+            <End Role="NetPonto_EventsUser" EntitySet="NetPonto_EventsUser" />
+            <End Role="NetPonto_Surveys" EntitySet="NetPonto_Surveys" />
+          </AssociationSet>
+          <AssociationSet Name="NetPonto_UserTags" Association="NetPontoDBModel.NetPonto_UserTags">
+            <End Role="NetPonto_TagCloud" EntitySet="NetPonto_TagCloud" />
+            <End Role="NetPonto_Users" EntitySet="NetPonto_Users" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="aspnet_Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredRoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="NetPontoDBModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+        </EntityType>
+        <EntityType Name="aspnet_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="LoweredUserName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="MobileAlias" Type="String" MaxLength="16" Unicode="true" FixedLength="false" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="NetPonto_Users" Relationship="NetPontoDBModel.FK_NetPonto_Users_aspnet_Users" FromRole="aspnet_Users" ToRole="NetPonto_Users" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="NetPontoDBModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+        </EntityType>
+        <EntityType Name="NetPonto_Article">
+          <Key>
+            <PropertyRef Name="ArticleId" />
+          </Key>
+          <Property Name="ArticleId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+          <NavigationProperty Name="NetPonto_TagCloud" Relationship="NetPontoDBModel.NetPonto_ArticleTags" FromRole="NetPonto_Article" ToRole="NetPonto_TagCloud" />
+        </EntityType>
+        <EntityType Name="NetPonto_Comments">
+          <Key>
+            <PropertyRef Name="CommentId" />
+          </Key>
+          <Property Name="CommentId" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NetPonto_Events">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Lat" Type="Decimal" Precision="18" Scale="18" />
+          <Property Name="Lon" Type="Decimal" Precision="18" Scale="18" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="CreatedBy" Type="Guid" Nullable="false" />
+          <Property Name="UpdatedOn" Type="DateTime" />
+          <Property Name="UpdatedBy" Type="Guid" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="Seats" Type="Int32" />
+          <NavigationProperty Name="NetPonto_EventsUser" Relationship="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Events" FromRole="NetPonto_Events" ToRole="NetPonto_EventsUser" />
+        </EntityType>
+        <EntityType Name="NetPonto_EventsUser">
+          <Key>
+            <PropertyRef Name="EventId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="Prize" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Speaker" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="NetPonto_Events" Relationship="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Events" FromRole="NetPonto_EventsUser" ToRole="NetPonto_Events" />
+          <NavigationProperty Name="NetPonto_Users" Relationship="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Users" FromRole="NetPonto_EventsUser" ToRole="NetPonto_Users" />
+          <NavigationProperty Name="NetPonto_Surveys" Relationship="NetPontoDBModel.NetPonto_EvemtSurveys" FromRole="NetPonto_EventsUser" ToRole="NetPonto_Surveys" />
+        </EntityType>
+        <EntityType Name="NetPonto_Log">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="Guid" Nullable="false" />
+          <Property Name="ApplicationName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="LogLevel" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="MachineName" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="UserName" Type="String" MaxLength="64" Unicode="false" FixedLength="false" />
+          <Property Name="Assembly" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="WorkingDirectory" Type="String" Nullable="false" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="Exception" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="DetailedMessage" Type="String" MaxLength="1024" Unicode="false" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="NetPonto_Surveys">
+          <Key>
+            <PropertyRef Name="SurveyId" />
+          </Key>
+          <Property Name="SurveyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NetPonto_EventsUser" Relationship="NetPontoDBModel.NetPonto_EvemtSurveys" FromRole="NetPonto_Surveys" ToRole="NetPonto_EventsUser" />
+        </EntityType>
+        <EntityType Name="NetPonto_TagCloud">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="16" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="NetPonto_Article" Relationship="NetPontoDBModel.NetPonto_ArticleTags" FromRole="NetPonto_TagCloud" ToRole="NetPonto_Article" />
+          <NavigationProperty Name="NetPonto_Users" Relationship="NetPontoDBModel.NetPonto_UserTags" FromRole="NetPonto_TagCloud" ToRole="NetPonto_Users" />
+        </EntityType>
+        <EntityType Name="NetPonto_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Guid" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="Deleted" Type="Boolean" Nullable="false" />
+          <Property Name="Avatar" Type="String" MaxLength="32" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="aspnet_Users" Relationship="NetPontoDBModel.FK_NetPonto_Users_aspnet_Users" FromRole="NetPonto_Users" ToRole="aspnet_Users" />
+          <NavigationProperty Name="NetPonto_EventsUser" Relationship="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Users" FromRole="NetPonto_Users" ToRole="NetPonto_EventsUser" />
+          <NavigationProperty Name="NetPonto_TagCloud" Relationship="NetPontoDBModel.NetPonto_UserTags" FromRole="NetPonto_Users" ToRole="NetPonto_TagCloud" />
+        </EntityType>
+        <Association Name="FK_NetPonto_Users_aspnet_Users">
+          <End Role="aspnet_Users" Type="NetPontoDBModel.aspnet_Users" Multiplicity="1" />
+          <End Role="NetPonto_Users" Type="NetPontoDBModel.NetPonto_Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NetPonto_Users">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_EventsUser_NetPonto_Events">
+          <End Role="NetPonto_Events" Type="NetPontoDBModel.NetPonto_Events" Multiplicity="1" />
+          <End Role="NetPonto_EventsUser" Type="NetPontoDBModel.NetPonto_EventsUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_Events">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="NetPonto_EventsUser">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NetPonto_EventsUser_NetPonto_Users">
+          <End Role="NetPonto_Users" Type="NetPontoDBModel.NetPonto_Users" Multiplicity="1" />
+          <End Role="NetPonto_EventsUser" Type="NetPontoDBModel.NetPonto_EventsUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NetPonto_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="NetPonto_EventsUser">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnet_UsersInRoles">
+          <End Role="aspnet_Roles" Type="NetPontoDBModel.aspnet_Roles" Multiplicity="*" />
+          <End Role="aspnet_Users" Type="NetPontoDBModel.aspnet_Users" Multiplicity="*" />
+        </Association>
+        <Association Name="NetPonto_ArticleTags">
+          <End Role="NetPonto_Article" Type="NetPontoDBModel.NetPonto_Article" Multiplicity="*" />
+          <End Role="NetPonto_TagCloud" Type="NetPontoDBModel.NetPonto_TagCloud" Multiplicity="*" />
+        </Association>
+        <Association Name="NetPonto_EvemtSurveys">
+          <End Role="NetPonto_EventsUser" Type="NetPontoDBModel.NetPonto_EventsUser" Multiplicity="*" />
+          <End Role="NetPonto_Surveys" Type="NetPontoDBModel.NetPonto_Surveys" Multiplicity="*" />
+        </Association>
+        <Association Name="NetPonto_UserTags">
+          <End Role="NetPonto_TagCloud" Type="NetPontoDBModel.NetPonto_TagCloud" Multiplicity="*" />
+          <End Role="NetPonto_Users" Type="NetPontoDBModel.NetPonto_Users" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NetPontoDBModelStoreContainer" CdmEntityContainer="NetPontoDBEntities">
+          <EntitySetMapping Name="aspnet_Roles"><EntityTypeMapping TypeName="NetPontoDBModel.aspnet_Roles"><MappingFragment StoreEntitySet="aspnet_Roles">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+            <ScalarProperty Name="LoweredRoleName" ColumnName="LoweredRoleName" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="aspnet_Users"><EntityTypeMapping TypeName="NetPontoDBModel.aspnet_Users"><MappingFragment StoreEntitySet="aspnet_Users">
+            <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="LoweredUserName" ColumnName="LoweredUserName" />
+            <ScalarProperty Name="MobileAlias" ColumnName="MobileAlias" />
+            <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+            <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_Article"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_Article"><MappingFragment StoreEntitySet="NetPonto_Article">
+            <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+            <ScalarProperty Name="Content" ColumnName="Content" />
+            <ScalarProperty Name="Title" ColumnName="Title" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_Comments"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_Comments"><MappingFragment StoreEntitySet="NetPonto_Comments">
+            <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_Events"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_Events"><MappingFragment StoreEntitySet="NetPonto_Events">
+            <ScalarProperty Name="EventId" ColumnName="EventId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="Lat" ColumnName="Lat" />
+            <ScalarProperty Name="Lon" ColumnName="Lon" />
+            <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+            <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+            <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+            <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+            <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+            <ScalarProperty Name="Seats" ColumnName="Seats" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_EventsUser"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_EventsUser"><MappingFragment StoreEntitySet="NetPonto_EventsUser">
+            <ScalarProperty Name="EventId" ColumnName="EventId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Prize" ColumnName="Prize" />
+            <ScalarProperty Name="Speaker" ColumnName="Speaker" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_Log"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_Log"><MappingFragment StoreEntitySet="NetPonto_Log">
+            <ScalarProperty Name="LogId" ColumnName="LogId" />
+            <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+            <ScalarProperty Name="LogLevel" ColumnName="LogLevel" />
+            <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+            <ScalarProperty Name="UserName" ColumnName="UserName" />
+            <ScalarProperty Name="Assembly" ColumnName="Assembly" />
+            <ScalarProperty Name="WorkingDirectory" ColumnName="WorkingDirectory" />
+            <ScalarProperty Name="Exception" ColumnName="Exception" />
+            <ScalarProperty Name="DetailedMessage" ColumnName="DetailedMessage" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_Surveys"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_Surveys"><MappingFragment StoreEntitySet="NetPonto_Surveys">
+            <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_TagCloud"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_TagCloud"><MappingFragment StoreEntitySet="NetPonto_TagCloud">
+            <ScalarProperty Name="TagId" ColumnName="TagId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="NetPonto_Users"><EntityTypeMapping TypeName="NetPontoDBModel.NetPonto_Users"><MappingFragment StoreEntitySet="NetPonto_Users">
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+            <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+            <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="NetPontoDBModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+            <EndProperty Name="aspnet_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="NetPonto_ArticleTags" TypeName="NetPontoDBModel.NetPonto_ArticleTags" StoreEntitySet="NetPonto_ArticleTags">
+            <EndProperty Name="NetPonto_Article">
+              <ScalarProperty Name="ArticleId" ColumnName="ArticleId" />
+            </EndProperty>
+            <EndProperty Name="NetPonto_TagCloud">
+              <ScalarProperty Name="TagId" ColumnName="TagId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="NetPonto_EvemtSurveys" TypeName="NetPontoDBModel.NetPonto_EvemtSurveys" StoreEntitySet="NetPonto_EvemtSurveys">
+            <EndProperty Name="NetPonto_EventsUser">
+              <ScalarProperty Name="EventId" ColumnName="EventId" />
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="NetPonto_Surveys">
+              <ScalarProperty Name="SurveyId" ColumnName="SurveyId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="NetPonto_UserTags" TypeName="NetPontoDBModel.NetPonto_UserTags" StoreEntitySet="NetPonto_UserTags">
+            <EndProperty Name="NetPonto_TagCloud">
+              <ScalarProperty Name="TagId" ColumnName="TagId" />
+            </EndProperty>
+            <EndProperty Name="NetPonto_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="NetPonto">
+        <EntityTypeShape EntityType="NetPontoDBModel.aspnet_Roles" Width="1.5" PointX="0.75" PointY="1.25" Height="1.9210009765624998" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.aspnet_Users" Width="1.5" PointX="3" PointY="1" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_Article" Width="1.5" PointX="0.75" PointY="5.375" Height="1.5923063151041657" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_Comments" Width="1.5" PointX="0.75" PointY="8.75" Height="1.2636116536458317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_Events" Width="1.5" PointX="5.25" PointY="5.75" Height="2.9070849609374987" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_EventsUser" Width="1.5" PointX="7.5" PointY="1.125" Height="2.0853483072916674" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_Log" Width="1.5" PointX="7.75" PointY="8.75" Height="2.7427376302083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_Surveys" Width="1.5" PointX="9.75" PointY="1.5" Height="1.2636116536458317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_TagCloud" Width="1.5" PointX="3" PointY="5.25" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="NetPontoDBModel.NetPonto_Users" Width="1.5" PointX="5.25" PointY="1.125" Height="2.0853483072916674" IsExpanded="true" />
+        <AssociationConnector Association="NetPontoDBModel.FK_NetPonto_Users_aspnet_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.1676741536458337" />
+          <ConnectorPoint PointX="5.25" PointY="2.1676741536458337" />
+        </AssociationConnector>
+        <AssociationConnector Association="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Events" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="7.20354248046875" />
+          <ConnectorPoint PointX="8.25" PointY="7.20354248046875" />
+          <ConnectorPoint PointX="8.25" PointY="3.2103483072916674" />
+        </AssociationConnector>
+        <AssociationConnector Association="NetPontoDBModel.FK_NetPonto_EventsUser_NetPonto_Users" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="2.1676741536458337" />
+          <ConnectorPoint PointX="7.5" PointY="2.1676741536458337" />
+        </AssociationConnector>
+        <AssociationConnector Association="NetPontoDBModel.aspnet_UsersInRoles" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.21050048828125" />
+          <ConnectorPoint PointX="3" PointY="2.21050048828125" />
+        </AssociationConnector>
+        <AssociationConnector Association="NetPontoDBModel.NetPonto_ArticleTags" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.1711531575520828" />
+          <ConnectorPoint PointX="3" PointY="6.1711531575520828" />
+        </AssociationConnector>
+        <AssociationConnector Association="NetPontoDBModel.NetPonto_EvemtSurveys" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="2.1318058268229159" />
+          <ConnectorPoint PointX="9.75" PointY="2.1318058268229159" />
+        </AssociationConnector>
+        <AssociationConnector Association="NetPontoDBModel.NetPonto_UserTags" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.25" />
+          <ConnectorPoint PointX="4.875" PointY="4.875" />
+          <ConnectorPoint PointX="4.875" PointY="2.7202632304687513" />
+          <ConnectorPoint PointX="5.25" PointY="2.7202632304687513" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

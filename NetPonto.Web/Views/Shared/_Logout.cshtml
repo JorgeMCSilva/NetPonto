@@ -1,0 +1,20 @@
+﻿@using NetPonto.Common.Helpers
+<div id="toppanel">
+    <div id="panel">
+        <div class="content clearfix">
+        </div>
+    </div>
+    <!-- /login -->
+    <!-- The tab on top -->
+    <div class="tab">
+        <ul class="login">
+            <li class="left">&nbsp;</li>
+            <li>Hello @HttpContext.Current.User.Identity.Name</li>
+            <li class="sep">|</li>
+            <li id="toggle"><a id="openLogin" class="open">User Panel</a> <a id="closeLogin"
+                style="display: none;" class="close">Close Panel</a> </li>
+            <li class="right">&nbsp;</li>
+        </ul>
+    </div>
+    <!-- / top -->
+</div>

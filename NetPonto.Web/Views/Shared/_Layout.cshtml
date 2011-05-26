@@ -1,0 +1,51 @@
+﻿@using NetPonto.Common.Helpers
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    @Html.CSS("site.css")
+    @Html.CSS("screen.css")
+    @Html.CSS("plugins/fancy-type/screen.css")
+    @Html.CSS("plugins/buttons/screen.css")
+    @Html.CSS("print.css", "print")
+    <!--[If lt IE 8]><link rel="stylesheet" type="text/css" href="../../Public/css/ie.css" media="screen,projection" /><![endif]-->
+    <link href="../../Public/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../Public/css/slide.css" rel="stylesheet" type="text/css" />
+    <script src="../../Public/javascript/jquery-1.5.1.js" type="text/javascript"></script>
+    <script src="../../Public/javascript/Login.js" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+        <br />
+        @Html.Partial("_Login")
+        <div class="container">
+            <div class="column span-12">
+                <h1>
+                    HEADER GOES HERE</h1>
+            </div>
+            <nav class="column span-12">
+                <ul id="menu">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+            </nav>
+            <span class="alt">asdf</span>
+            <br />
+            <span class="dquo">&#8220;</span>asdf&#8221;
+        </div>
+    </header>
+    <br />
+    <section class="container" id="main">
+        <div class="column span-12">
+            @RenderBody()
+        </div>
+    </section>
+    <br />
+    <footer class="container">
+        <div class="column span-12">
+            FOOTER GOES HERE
+        </div>
+    </footer>
+</body>
+</html>

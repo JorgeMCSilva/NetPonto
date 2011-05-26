@@ -1,0 +1,69 @@
+﻿@using NetPonto.Common.Helpers
+<div id="toppanel">
+    <div id="panel">
+        <div class="content clearfix">
+            <div class="left">
+                <!-- Login Form -->
+                <h1>
+                    Member Login</h1>
+                <label class="grey" for="log">
+                    Username:</label>
+                @Html.TextBox("txtLogin", null, new { @class = "field" })
+                <label class="grey" for="pwd">
+                    Password:</label>
+                @Html.Password("txtPasswd", null, new { @class = "field" })
+                <div class="clear">
+                </div>
+                <div class="loginButtons">
+                    @Html.ActionImage("../../public/css/images/Apply.png", "Login", "Login", "Login", null, new { @class = "button positive" })
+                    @Html.ActionImage("../../public/css/images/Key.png", "Forgot Password", "ForgotPassword", "Login", null, new { @class = "button negative" })
+                </div>
+            </div>
+            <div class="left">
+                <!-- Register Form -->
+                <h1>
+                    Not a member yet? Sign Up!</h1>
+                <label class="grey" for="signup">
+                    Email:</label>
+                @Html.TextBox("txtSignupMail", null, new { @class = "field" })
+                <label class="grey" for="email">
+                    Password:</label>
+                @Html.Password("txtSignupPass1", null, new { @class = "field" })
+                <label>
+                    Confirm password</label>
+                @Html.Password("txtSignupPass2", null, new { @class = "field" })
+                <div class="clear">
+                </div>
+                <div class="loginButtons">
+                    @Html.ActionImage("../../public/css/images/Key.png", "Register", "Register", "Login", null, new { @class = "button positive" })
+                </div>
+            </div>
+            <div class="left right">
+                <!-- OpenID Form -->
+                <h1>
+                    OpenID</h1>
+                <label class="grey" for="signup">
+                    Username:</label>
+                <input class="field" type="text" name="signup" id="Text1" value="" size="23" />
+                <div class="clear">
+                </div>
+                <div class="loginButtons">
+                    @Html.ActionImage("../../public/css/images/Apply.png", "Login", "Register", "Login", null, new { @class = "button positive" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /login -->
+    <!-- The tab on top -->
+    <div class="tab">
+        <ul class="login">
+            <li class="left">&nbsp;</li>
+            <li>Hello Guest!</li>
+            <li class="sep">|</li>
+            <li id="toggle"><a id="openLogin" class="open">Log In | Register</a> <a id="closeLogin"
+                style="display: none;" class="close">Close Panel</a> </li>
+            <li class="right">&nbsp;</li>
+        </ul>
+    </div>
+    <!-- / top -->
+</div>
