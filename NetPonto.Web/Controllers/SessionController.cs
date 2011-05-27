@@ -6,23 +6,27 @@ using System.Web.Mvc;
 using NetPonto.Infrastructure.Authentication;
 using System.Web.Security;
 using NetPonto.Infrastructure.Storage;
+using NetPonto.Infrastructure.Log;
 
 namespace NetPonto.Web.Controllers
 {
     public class SessionController : Controller
     {
 
-        IAuthenticationService _authService;
+        IUserAuthentication _authService;
         ISession _session;
-        UserActivity _log;
-        public SessionController(
-            IAuthenticationService authService,
-            ISession session,
-            I)
+        ILogger _log;
+
+        public SessionController()
+        {
+        }
+        
+        
+        public SessionController(IUserAuthentication authService, ISession session, ILogger log)
         {
             _session = session;
             _authService = authService;
-
+            _log = log;
         }
 
         //
@@ -35,8 +39,9 @@ namespace NetPonto.Web.Controllers
             {
                 Session["ReturnUrl"] = Request.QueryString["ReturnUrl"];
             }
-            var user = new User();
-            return View(user);
+            //var user = new User();
+            //return View(user);
+            return View("");
         }
 
         [HttpPost]
@@ -50,28 +55,29 @@ namespace NetPonto.Web.Controllers
             {
                 try
                 {
-                    var registered = _authService.RegisterUser(login, password, confirm, "", "", "");
+                    //TODO: Confirm passwd fields
+                    var registered = _authService.RegisterUser(login, password);
                     if (registered)
                     {
-                        this.FlashInfo("Thank you for signing up!");
-                        _log.LogIt(login, "Registered");
+                        //this.FlashInfo("Thank you for signing up!");
+                        _log.Info("Registered");
 
                         return AuthAndRedirect(login, login);
                     }
                     else
                     {
-                        this.FlashWarning("There was a problem with your registration");
+                        //this.FlashWarning("There was a problem with your registration");
                     }
                 }
                 catch (Exception x)
                 {
                     //the auth service should return a usable exception message
-                    this.FlashError(x.Message);
+                    //this.FlashError(x.Message);
                 }
             }
             else
             {
-                this.FlashError("Invalid user name or password");
+                //this.FlashError("Invalid user name or password");
             }
             return RedirectToAction("create");
 
@@ -79,36 +85,35 @@ namespace NetPonto.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Login()
         {
 
-            var login = collection["username"];
-            var password = collection["password"];
-            if (!String.IsNullOrEmpty(login) & !String.IsNullOrEmpty(password))
-            {
-                if (_authService.IsValidLogin(login, password))
-                {
-                    _log.LogIt(login, "Logged in");
-                    return AuthAndRedirect(login, login);
-                }
-            }
-            this.FlashWarning("Invalid login");
+            //var login = collection["username"];
+            //var password = collection["password"];
+            //if (!String.IsNullOrEmpty(login) & !String.IsNullOrEmpty(password))
+            //{
+            //    if (_authService.IsValidLogin(login, password))
+            //    {
+            //        _log.Info("Logged in");
+            //        return AuthAndRedirect(login, login);
+            //    }
+            //}
+            //this.FlashWarning("Invalid login");
 
-            return View(new User() { UserName = login });
-
+            return PartialView("_Logout");
         }
 
         void SynchUser(string userName, string friendly)
         {
             //see if a user exists
-            var user = _session.Single<User>(x => x.UserName == userName);
-            if (user == null)
-            {
-                user = new User() { UserName = userName, Friendly = friendly, OpenID = userName };
-                _session.Add(user);
-            }
-            user.JustLoggedIn();
-            _session.Update(user);
+            //var user = _session.Single<User>(x => x.UserName == userName);
+            //if (user == null)
+            //{
+            //    user = new User() { UserName = userName, Friendly = friendly, OpenID = userName };
+            //    _session.Add(user);
+            //}
+            //user.JustLoggedIn();
+            //_session.Update(user);
             _session.CommitChanges();
         }
 
@@ -122,80 +127,73 @@ namespace NetPonto.Web.Controllers
             Response.Cookies["friendly"].HttpOnly = true;
 
             FormsAuthentication.SetAuthCookie(userName, true);
-            if (Session["ReturnUrl"] != null)
-            {
-                return Redirect(Session["ReturnUrl"].ToString());
-            }
-            else
-            {
-                return Redirect("/");
-            }
+            return Redirect("/");
         }
         public ActionResult Authenticate(string returnUrl)
         {
-            var openid = new OpenIdRelyingParty();
-            var response = openid.GetResponse();
+            //var openid = new OpenIdRelyingParty();
+            //var response = openid.GetResponse();
 
 
 
-            if (response == null)
-            {
-                // Stage 2: user submitting Identifier
-                Identifier id;
-                if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
-                {
-                    try
-                    {
-                        var req = openid.CreateRequest(id);
-                        var fetch = new FetchRequest();
-                        //ask for more info - the email address
-                        //no guarantee you'll get it back :)
-                        var email = new AttributeRequest(WellKnownAttributes.Contact.Email);
-                        email.IsRequired = true;
-                        fetch.Attributes.Add(email);
-                        req.AddExtension(fetch);
+            //if (response == null)
+            //{
+            //    // Stage 2: user submitting Identifier
+            //    Identifier id;
+            //    if (Identifier.TryParse(Request.Form["openid_identifier"], out id))
+            //    {
+            //        try
+            //        {
+            //            var req = openid.CreateRequest(id);
+            //            var fetch = new FetchRequest();
+            //            //ask for more info - the email address
+            //            //no guarantee you'll get it back :)
+            //            var email = new AttributeRequest(WellKnownAttributes.Contact.Email);
+            //            email.IsRequired = true;
+            //            fetch.Attributes.Add(email);
+            //            req.AddExtension(fetch);
 
-                        return req.RedirectingResponse.AsActionResult();
+            //            return req.RedirectingResponse.AsActionResult();
 
-                    }
-                    catch (ProtocolException ex)
-                    {
-                        ViewBag.Message = ex.Message;
-                        return View("Login");
-                    }
-                }
-                else
-                {
-                    ViewBag.Message = "Invalid identifier";
-                    return View("Login");
-                }
-            }
-            else
-            {
-                // Stage 3: OpenID Provider sending assertion response
-                switch (response.Status)
-                {
-                    case AuthenticationStatus.Authenticated:
-                        //They're in there...
+            //        }
+            //        catch (ProtocolException ex)
+            //        {
+            //            ViewBag.Message = ex.Message;
+            //            return View("Login");
+            //        }
+            //    }
+            //    else
+            //    {
+            //        ViewBag.Message = "Invalid identifier";
+            //        return View("Login");
+            //    }
+            //}
+            //else
+            //{
+            //    // Stage 3: OpenID Provider sending assertion response
+            //    switch (response.Status)
+            //    {
+            //        case AuthenticationStatus.Authenticated:
+            //            //They're in there...
 
-                        var fetch = response.GetExtension<FetchResponse>();
-                        string email = null;
-                        if (fetch != null)
-                        {
-                            IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
-                            email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
+            //            var fetch = response.GetExtension<FetchResponse>();
+            //            string email = null;
+            //            if (fetch != null)
+            //            {
+            //                IList<string> emailAddresses = fetch.Attributes[WellKnownAttributes.Contact.Email].Values;
+            //                email = emailAddresses.Count > 0 ? emailAddresses[0] : null;
 
-                        }
-                        var friendly = email ?? response.FriendlyIdentifierForDisplay;
-                        return AuthAndRedirect(friendly, response.ClaimedIdentifier);
-                    case AuthenticationStatus.Canceled:
-                        ViewBag.Message = "Canceled at provider";
-                        return View("Login");
-                    case AuthenticationStatus.Failed:
-                        ViewBag.Message = response.Exception.Message;
-                        return View("Login");
-                }
-            }
+            //            }
+            //            var friendly = email ?? response.FriendlyIdentifierForDisplay;
+            //            return AuthAndRedirect(friendly, response.ClaimedIdentifier);
+            //        case AuthenticationStatus.Canceled:
+            //            ViewBag.Message = "Canceled at provider";
+            //            return View("Login");
+            //        case AuthenticationStatus.Failed:
+            //            ViewBag.Message = response.Exception.Message;
+            //            return View("Login");
+            //    }
+            //}
             return new EmptyResult();
         }
 
@@ -206,7 +204,7 @@ namespace NetPonto.Web.Controllers
         public ActionResult Delete()
         {
             Response.Cookies["friendly"].Value = null;
-            _log.LogIt(User.Identity.Name, "Logged out");
+            _log.Info("Logged out");
             FormsAuthentication.SignOut();
             return RedirectToAction("index", "home");
         }

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Web.Mvc;
 using System.Web.Routing;
-
 using Autofac;
 using Autofac.Integration.Mvc;
-using AutofacContrib.CommonServiceLocator;
 
 using Microsoft.Practices.EnterpriseLibrary.Common.Configuration;
 
@@ -105,8 +103,8 @@ namespace NetPonto.Web
             DependencyResolver.SetResolver(new AutofacDependencyResolver(Container));
 
             // Set the EntLib service locator to use Autofac.
-            var autofacLocator = new AutofacServiceLocator(Container);
-            EnterpriseLibraryContainer.Current = autofacLocator;
+            //var autofacLocator = new AutofacServiceLocator(Container);
+            //EnterpriseLibraryContainer.Current = autofacLocator;
 
         }
     }

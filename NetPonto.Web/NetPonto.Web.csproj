@@ -43,12 +43,6 @@
     <Reference Include="Autofac.Integration.Mvc">
       <HintPath>..\packages\Autofac.Mvc3.2.4.5.724\lib\NET40\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="AutofacContrib.CommonServiceLocator">
-      <HintPath>..\..\..\Users\Holy\Desktop\1\Library\AutofacContrib.CommonServiceLocator.dll</HintPath>
-    </Reference>
-    <Reference Include="AutofacContrib.EnterpriseLibraryConfigurator, Version=0.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\..\..\Users\Holy\Desktop\AutofacContrib.EnterpriseLibraryConfigurator.dll</HintPath>
-    </Reference>
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>..\packages\AntiXSS.4.0.1\lib\net35\HtmlSanitizationLibrary.dll</HintPath>
     </Reference>
@@ -104,6 +98,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
